@@ -4,8 +4,6 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 import pages.MyPageObject;
 
-import java.util.List;
-
 public class CartLocators extends MyPageObject {
     @FindBy(xpath = "//body/app-root[1]/div[1]/div[1]/div[1]/div[1]/app-product-list[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[3]/div[1]/button[1]/span[1]")
     public WebElementFacade buttonAddToCartOnHomepage;

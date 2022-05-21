@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import locators.HomepageLocators;
 import net.thucydides.core.annotations.Steps;

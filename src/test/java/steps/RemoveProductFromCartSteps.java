@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -8,7 +7,6 @@ import locators.CartLocators;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import pages.CartPage;
-import pages.HomePage;
 
 public class RemoveProductFromCartSteps {
     @Steps

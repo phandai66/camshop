@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -26,12 +25,12 @@ public class OrderSteps {
         cartPage.clickOnAnyProductToGoToDetailPageOfIt(cartLocators.textProduct1OnHomepage);
         cartPage.clickAddToCartButtonDetailPage();
         cartPage.clickButtonCloseDetailPage();
-//        cartPage.clickOnAnyProductToGoToDetailPageOfIt(cartLocators.textProduct2OnHomepage);
-//        cartPage.clickAddToCartButtonDetailPage();
-//        cartPage.clickButtonCloseDetailPage();
-//        cartPage.clickOnAnyProductToGoToDetailPageOfIt(cartLocators.textProduct3OnHomepage);
-//        cartPage.clickAddToCartButtonDetailPage();
-//        cartPage.clickButtonCloseDetailPage();
+        cartPage.clickOnAnyProductToGoToDetailPageOfIt(cartLocators.textProduct2OnHomepage);
+        cartPage.clickAddToCartButtonDetailPage();
+        cartPage.clickButtonCloseDetailPage();
+        cartPage.clickOnAnyProductToGoToDetailPageOfIt(cartLocators.textProduct3OnHomepage);
+        cartPage.clickAddToCartButtonDetailPage();
+        cartPage.clickButtonCloseDetailPage();
     }
 
     @And("^Click Continue to order button in cart$")

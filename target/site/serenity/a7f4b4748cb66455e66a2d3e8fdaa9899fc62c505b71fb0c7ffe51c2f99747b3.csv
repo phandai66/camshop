@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Contact","The phone number in hotline section is correct","SUCCESS","2022-05-21T16:22:18.8590733+07:00[Asia/Bangkok]","0.0","5.21"
+"Contact","The email in email section is correct","SUCCESS","2022-05-21T16:22:24.9821414+07:00[Asia/Bangkok]","0.0","7.41"
+"Contact","The address in address section is correct","SUCCESS","2022-05-21T16:22:33.2321478+07:00[Asia/Bangkok]","0.0","6.28"

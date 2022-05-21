@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Serenity Reports</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!--[if IE 7]>
+<!--<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">-->
+
+<link rel="stylesheet" href="fontawesome-free-5.3.1-web/css/all.css">
+<link rel="stylesheet" href="fontawesome-free-5.3.1-web/css/v4-shims.css">
+
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><link rel="stylesheet" href="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.css">
+<link rel="stylesheet" href="chartist/dist/chartist.min.css">
+<script src="chartist/dist/chartist.min.js"></script>
+<script src="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.js"></script>
+<!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.19/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.19/datatables.min.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.19/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.19/datatables.bootstrap4.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.19/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.19/datatables.min.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.19/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.19/datatables.bootstrap4.min.css" rel="stylesheet" />
+
+
+
+
+    <script class="code" type="text/javascript">$(document).ready(function () {
+
+        $('.scenario-result-table').DataTable({
+            "order": [[0, "asc",], [3, "asc",]],
+            "pageLength": 10,
+            "language": {
+                searchPlaceholder: "Filter",
+                search: ""
+            }
+        });
+
+        // Results table
+        $('#test-results-table').DataTable({
+            "order": [[0, "asc",], [3, "asc",]],
+            "pageLength": 10,
+            "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]]
+        });
+
+        $('#evidence-table').DataTable({
+                    searching: false,
+                    paging: false,
+                    info: false
+        });
+
+        $(".feature-coverage-table").DataTable({
+            searching: false,
+            paging: false,
+            info: false
+        });
+
+        $(".feature-coverage-table-with-pagination").DataTable({
+            order: [[0, "asc",]],
+            pageLength: 10,
+            language: {
+                searchPlaceholder: "Filter",
+                search: ""
+            }
+        });
+    });
+    </script>
+</head>
+
+<body class="results-page">
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">CamShop</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+
+    <div id="contenttop">
+        <div class="middlebg">
+        <span class="breadcrumbs"><a href="index.html">Home</a>
+        </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+        <li >
+            <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 21-05-2022 16:24</span>
+    <br style="clear:left"/>
+</div>
+    <div class="clr"></div>
+    <div id="beforetable"></div>
+    <div id="results-dashboard">
+        <div class="middlb">
+            <div class="table">
+
+                <h2>Test Results: All Tests</h2>
+                <table class='overview'>
+                    <tr>
+                        <td width="375px" valign="top">
+                            <div class="test-count-summary">
+                                <div class="test-count-title">
+                                18 test scenarios 
+                                    (including 17 rows of test data)
+                                 |
+                                    <a href="results.csv" title="Download CSV"> <i class="fa fa-download"
+                                                                                    title="Download CSV"></i></a>
+
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#summary"><i class="fas fa-home"></i> Summary</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#tests"><i class="fas fa-tachometer-alt"></i> Test
+                                            Results</a>
+                                    </li>
+                                </ul>
+
+
+                                <div class="card border">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div id="summary" class="tab-pane fade in active">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                            <div style="width:300px;"
+                                                                 class="chart-container automated-and-manual-results">
+                                                                <div class="ct-chart ct-square"></div>
+                                                            </div>
+                                                            <script>
+
+                                                                var labels = ['100%', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+                                                                // Our series array that contains series objects or in this case series data arrays
+
+                                                                var series = [{meta: 'Passing tests (automated)', value: 18}, {meta: 'Passing tests (manual)', value: 0}, {meta: 'Pending tests (automated)', value: 0}, {meta: 'Pending tests (manual)', value: 0}, {meta: 'Ignored tests (automated)', value: 0}, {meta: 'Ignored tests (manual)', value: 0}, {meta: 'Skipped tests (automated)', value: 0}, {meta: 'Skipped tests (manual)', value: 0}, {meta: 'Failing tests (automated)', value: 0}, {meta: 'Failing tests (manual)', value: 0}, {meta: 'Broken tests (automated)', value: 0}, {meta: 'Broken tests (manual)', value: 0}, {meta: 'Compromised tests (automated)', value: 0}, {meta: 'Compromised tests (manual)', value: 0}];
+
+                                                                // As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
+                                                                // as you saw in the previous example
+                                                                var options = {
+                                                                    width: 350,
+                                                                    height: 300
+                                                                };
+
+
+                                                                new Chartist.Pie('.ct-chart', {
+                                                                    series: series,
+                                                                    labels: labels
+                                                                }, {
+                                                                    plugins: [Chartist.plugins.tooltip()],
+                                                                    donut: true,
+                                                                    donutWidth: 60,
+                                                                    donutSolid: true,
+                                                                    startAngle: 270,
+                                                                    showLabel: true
+                                                                }, options);
+
+
+                                                                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                                                    new Chartist.Pie('.ct-chart', {
+                                                                        series: series,
+                                                                        labels: labels
+                                                                    }, {
+                                                                        plugins: [Chartist.plugins.tooltip()],
+                                                                        donut: true,
+                                                                        donutWidth: 60,
+                                                                        donutSolid: true,
+                                                                        startAngle: 270,
+                                                                        showLabel: true
+                                                                    }, options);
+                                                                });
+
+
+                                                            </script>
+                                                    </div>
+                                                    <div class="col-sm-8">
+
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th scope="col">Scenario Results (including rows of test
+                                                                    data)
+                                                                </th>
+                                                                <th scope="col" colspan="2" class="automated-stats">
+                                                                    Automated
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count">
+                                                                        <a href="01f5288b80adbd3af52a8ed68a4a616d3164f750229f80da1ef344382d948835.html"><i
+                                                                                class='fa fa-check-circle-o success-icon'></i>&nbsp;Passing</a>
+                                                                    </td>
+                                                                <td class="automated-stats">18</td>
+                                                                <td class="automated-stats">100%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count"><i
+                                                                            class='fa fa-stop-circle-o pending-icon'></i>&nbsp;Pending
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="aggregate-result-count"><i
+                                                                        class='fa fa-ban ignored-icon'></i>&nbsp;Ignored
+                                                                </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="aggregate-result-count"><i
+                                                                        class='fa fa-fast-forward skip-icon'></i>&nbsp;Skipped
+                                                                </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td colspan="3"><a
+                                                                            href="b964a040ccee2192880812cc5de2c4d0075e3288c1b298b7dda0839367bb26be.html"><i
+                                                                            class='fa fa-times failure-icon'></i>&nbsp;<em>Unsuccessful</em></a>
+                                                                    </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="aggregate-result-count indented-error-category">
+                                                                    <i
+                                                                            class='fa fa-times-circle failure-icon'></i>&nbsp;Failed
+                                                                </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            <tr>
+                                                                <td class="aggregate-result-count indented-error-category">
+                                                                    <i
+                                                                            class='fa fa-exclamation-triangle error-icon'></i>&nbsp;Broken
+                                                                </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            <tr>
+                                                                <td class="aggregate-result-count indented-error-category">
+                                                                    <i
+                                                                            class='fa fa-chain-broken compromised-icon'></i>&nbsp;Compromised
+                                                                </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr class="summary-stats">
+                                                                <td class="aggregate-result-count">Total</td>
+                                                                <td class="automated-stats">18</td>
+                                                                <td class="automated-stats"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Execution Time</th>
+                                                                <th>Clock Time</th>
+                                                                <th>Fastest Test</th>
+                                                                <th>Slowest Test</th>
+                                                                <th>Average Execution Time</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td> 3m 18s</td>
+                                                                <td> 3m 31s</td>
+                                                                <td>5s</td>
+                                                                <td>22s</td>
+                                                                <td>11s</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3>Functional Coverage Overview</h3>
+
+                                                            <table class="table feature-coverage-table" id="Feature">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>Feature</th>
+                                                                    <th style="" width:7.5em;
+                                                                    ">Scenarios</th>
+                                                                    <th style="" width:7.5em;
+                                                                    ">% Pass</th>
+                                                                    <th style="" width:7.5em;
+                                                                    ">Result</th>
+                                                                    <th>Coverage</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                                <a href="0bae59ca4484fce765cf967359bb879588fa201137a849b0945045fd5e670d1c.html">Add to cart</a>
+                                                                        </td>
+                                                                        <td>2</td>
+                                                                        <td>100%</td>
+                                                                        <td>
+                                                                                <i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="progress">
+                                                                                    <div class="progress-bar"
+                                                                                         role="progressbar"
+                                                                                         style="width: 100%; background-color: #30cb23"
+                                                                                         aria-valuenow="2"
+                                                                                         title="100% success"
+                                                                                         aria-valuemin="0"
+                                                                                         aria-valuemax="100">
+                                                                                    </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                                <a href="792c9a37956ccafa6637d9794af973f6d7b5b3d0af2d3ef9232b37ea62726f38.html">Change the quantity of each product in the cart</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>100%</td>
+                                                                        <td>
+                                                                                <i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="progress">
+                                                                                    <div class="progress-bar"
+                                                                                         role="progressbar"
+                                                                                         style="width: 100%; background-color: #30cb23"
+                                                                                         aria-valuenow="3"
+                                                                                         title="100% success"
+                                                                                         aria-valuemin="0"
+                                                                                         aria-valuemax="100">
+                                                                                    </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                                <a href="55eb16795c797ce855f80eddac70d39197e9d0ab49b6634f9f590e62f6664bb0.html">Contact</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>100%</td>
+                                                                        <td>
+                                                                                <i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="progress">
+                                                                                    <div class="progress-bar"
+                                                                                         role="progressbar"
+                                                                                         style="width: 100%; background-color: #30cb23"
+                                                                                         aria-valuenow="3"
+                                                                                         title="100% success"
+                                                                                         aria-valuemin="0"
+                                                                                         aria-valuemax="100">
+                                                                                    </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                                <a href="ec766e4d32e55a92ab92878e538c0e2b3a3e5473da30584435e3f1711303eaee.html">Filter Products</a>
+                                                                        </td>
+                                                                        <td>4</td>
+                                                                        <td>100%</td>
+                                                                        <td>
+                                                                                <i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="progress">
+                                                                                    <div class="progress-bar"
+                                                                                         role="progressbar"
+                                                                                         style="width: 100%; background-color: #30cb23"
+                                                                                         aria-valuenow="4"
+                                                                                         title="100% success"
+                                                                                         aria-valuemin="0"
+                                                                                         aria-valuemax="100">
+                                                                                    </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                                <a href="d3ed05091c3b664408b9355d01ea46d8526add0b3b1c79b32fc3a328ed18a0c4.html">Order</a>
+                                                                        </td>
+                                                                        <td>1</td>
+                                                                        <td>100%</td>
+                                                                        <td>
+                                                                                <i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="progress">
+                                                                                    <div class="progress-bar"
+                                                                                         role="progressbar"
+                                                                                         style="width: 100%; background-color: #30cb23"
+                                                                                         aria-valuenow="1"
+                                                                                         title="100% success"
+                                                                                         aria-valuemin="0"
+                                                                                         aria-valuemax="100">
+                                                                                    </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                                <a href="d4effa2132cfdd66cafc5cab87a52b19b7a22d13996c30396993d606da36d7df.html">Remove product from cart</a>
+                                                                        </td>
+                                                                        <td>2</td>
+                                                                        <td>100%</td>
+                                                                        <td>
+                                                                                <i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="progress">
+                                                                                    <div class="progress-bar"
+                                                                                         role="progressbar"
+                                                                                         style="width: 100%; background-color: #30cb23"
+                                                                                         aria-valuenow="2"
+                                                                                         title="100% success"
+                                                                                         aria-valuemin="0"
+                                                                                         aria-valuemax="100">
+                                                                                    </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                                <a href="b73ab2df35cd94b5317e6d6bfdb3d2310ff26862ef2f19989342051d05f64b83.html">Search</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>100%</td>
+                                                                        <td>
+                                                                                <i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="progress">
+                                                                                    <div class="progress-bar"
+                                                                                         role="progressbar"
+                                                                                         style="width: 100%; background-color: #30cb23"
+                                                                                         aria-valuenow="3"
+                                                                                         title="100% success"
+                                                                                         aria-valuemin="0"
+                                                                                         aria-valuemax="100">
+                                                                                    </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3>Tags</h3>
+
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div>
+                                                                    <a href="88acb24d37fc4a3c48949546b5b1c6264722729c496c3e49a17b838f7ff83deb.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> TGH-001&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="f351beccadd1b38e782ec6242257049737fe7936a87d8fcec1e9cc16a5f35409.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> TGH-002&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="710e3c9af4b7dfe9548fe09f37e9bd26cd889bd7df5adf756c16231b3b676a02.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> DSL-001&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="a1cdf35063124ed731ed38a41ec76dd01b19b4e2673b66d50eee1edc1d8b75e8.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> DSL-005&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="f54a69b1a5c6459b952fa0f1739c607d195e4764dba07eee63dda4c89369c51d.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> DSL-006&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="18cc282ad3eb3e3a15d55c4ced48ce3709b4a058fb89a3839172d8da186ca1ff.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> LH-001&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="b86322264d1b9b1bc47db336452fa377a021d0cd5a104100fa9c26d34626b394.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> LH-002&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="4613b816e9997074106d10a0fca29f14b5d71ed4f93eef3a468d14dda4dcadff.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> LH-003&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="56d95e61be521e1db74a32280ec120a63af27ed67b292b339933f0bf786a52f1.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> LSP-015&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="cce7c7bdff155ceaaa2c290e867fb945f097b2f82f5764edf6abb6e171725e5e.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> LSP-016&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="0911d2c130d9680f443df765cbaea3255018d9950769e0961f2c5cdb2a1fb8f3.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> LSP-019&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="ea6e5af766daab1b085738b326dc79ff817d9a61de0092eb2e792baed3a00bec.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> LSP-020&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="98d0c776b8917a441bd5199e660bb3179c2acf73b7cc79e684a13259310d05d8.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> DH-056&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="48d33843d2626a8520ebc0e197d395b9e517f76c4dfa546f68832e6a23b47b2e.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> XSP-001&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="686a8c19b548da7e91b745b3486cc2a2a79589fd551fc134d3a3dbf5e2242377.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> XSP-002&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="c9d0da4e687ea8b484ce9310d79107d22dffa043f766c325247fb20013304aee.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> Searchfunction&nbsp;&nbsp;&nbsp;3</span>
+                                                                    </a>
+                                                                    <a href="e8dd0562eae8b9d2e386ac246d2f5e559c3a91a61c761a43fbd89188ff842eb0.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> TK-001&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="5a0240719e6de78b806cddd4cb51c5dc2edb01a06db1860455063df551604a07.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> TK-002&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                    <a href="aa3f80cbe55590251bdfa1cac9aeb2b450decd526004d5e95680428b4316b31c.html">
+                                                                        <span class="badge"
+                                                                              style="background-color:#1D9918; margin:1em;padding:4px;"><i
+                                                                                class="fa fa-tag"></i> TK-003&nbsp;&nbsp;&nbsp;1</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="tests" class="tab-pane fade">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="fas fa-cogs"></i> Automated Tests</h3>
+
+                                            <table class="scenario-result-table table" id="scenario-results">
+                                                <thead>
+                                                <tr>
+                                                    <th>feature</th>
+                                                    <th class="test-name-column">Scenario</th>
+                                                    <th>Steps</th>
+                                                    <th>Start Time</th>
+                                                    <th>Duration</th>
+                                                    <th>Result</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="4ec40d6fafe2dc8984c001820cebb9be6774a05f6e58aaa978068f8344d6a136.html">Add to cart</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="8fb66a9fb5f59ae4106f442432b1f57eca4a819dbfbad21113a2f05779a76d14.html">The user can add products to cart by clicking "Add to cart" button of each product on homepage</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>4</td>
+                                                    <td>16:21:04</td>
+                                                    <td>00:12</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="4ec40d6fafe2dc8984c001820cebb9be6774a05f6e58aaa978068f8344d6a136.html">Add to cart</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="dafcde0a52c77f108018cda8156be4e4cd770b7da2eae1070ed65c375734e409.html">The user can add products to cart by clicking "Add to cart" button in product detail page of each product</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>6</td>
+                                                    <td>16:21:21</td>
+                                                    <td>00:11</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="7b4823d4c6397f3c4fa29fb266e243b885d51933d0a63c22ee4f3b1a4ae3d08d.html">Change the quantity of each product in the cart</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="0b78402e229d36b20c8e02b05ae236862df4d44682e94c79114de6354ffb5326.html">The user can change the quantity of each product in the cart by typing in input number</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>7</td>
+                                                    <td>16:21:35</td>
+                                                    <td>00:12</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="7b4823d4c6397f3c4fa29fb266e243b885d51933d0a63c22ee4f3b1a4ae3d08d.html">Change the quantity of each product in the cart</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="1b355e02bace665cc1dd43ac694e6bae7b117f7f7c144b88422e03149193bc71.html">The user can increase the number of products by clicking the Up icon</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>7</td>
+                                                    <td>16:21:48</td>
+                                                    <td>00:12</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="7b4823d4c6397f3c4fa29fb266e243b885d51933d0a63c22ee4f3b1a4ae3d08d.html">Change the quantity of each product in the cart</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="86aadb01f59e935fb4c39c7ed813cca09833e662edc13de07daba967370ae20f.html">The user can increase the number of products by clicking the Down icon</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>10</td>
+                                                    <td>16:22:02</td>
+                                                    <td>00:15</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="b827e45eda711ae83ba5c61aea61d3561dc137636dbb824b71b88dd324a64f0c.html">Contact</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="1560c3ac336d5561130f902760bcdf9582f1c71f5393a3eeaf545b35bd0f54d9.html">The phone number in hotline section is correct</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>2</td>
+                                                    <td>16:22:18</td>
+                                                    <td>00:05</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="b827e45eda711ae83ba5c61aea61d3561dc137636dbb824b71b88dd324a64f0c.html">Contact</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="5ba455ab965cfb388030d33f89f5fc07609eae5f3d266af76722dd31bfae5721.html">The email in email section is correct</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>2</td>
+                                                    <td>16:22:24</td>
+                                                    <td>00:07</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="b827e45eda711ae83ba5c61aea61d3561dc137636dbb824b71b88dd324a64f0c.html">Contact</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="427620380df6cf32b8051a2a12f895adc60340f1129bee42b63c6cd2f3e4bdc9.html">The address in address section is correct</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>2</td>
+                                                    <td>16:22:33</td>
+                                                    <td>00:06</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="e4e06c91f052cecb999e3b9e7fe620e29eb7cea4ebab6d8ec2ea7a6825bffbd5.html">Filter Products</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="4fe2ea863d965742ecce69c23c9cdee68cd6cb2599095e9fc18c91a33a3b0f56.html">Related products will appear when selecting one or more options in the Camera angle</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>3</td>
+                                                    <td>16:22:40</td>
+                                                    <td>00:07</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="e4e06c91f052cecb999e3b9e7fe620e29eb7cea4ebab6d8ec2ea7a6825bffbd5.html">Filter Products</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="59fbe68ff673619446570a705be06fad39cd6e51f2f265afc0cb34f3af9a334e.html">Related products will disappear when unselecting one or more options in the Camera angle</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>4</td>
+                                                    <td>16:22:49</td>
+                                                    <td>00:07</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="e4e06c91f052cecb999e3b9e7fe620e29eb7cea4ebab6d8ec2ea7a6825bffbd5.html">Filter Products</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="080b4141782b55cf5a1e52b941231c71a4d743be75cbab10816cf5fc498d74cf.html">Related products will appear when selecting one or more options in the Connection type</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>3</td>
+                                                    <td>16:22:57</td>
+                                                    <td>00:11</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="e4e06c91f052cecb999e3b9e7fe620e29eb7cea4ebab6d8ec2ea7a6825bffbd5.html">Filter Products</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="44747d36d3e34119668716e2ea31332db760b0aa3ee6f10731eb69e39420d4c3.html">Related products will disappear when unselecting one or more options in the Connection type</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>4</td>
+                                                    <td>16:23:09</td>
+                                                    <td>00:09</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="a4a1a56ca75745254d4ad53dfd555ab182dcb54a5ed9352d5d1497338081bafc.html">Order</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="d12dd9207793928315120f928ce21552f2eee6a509a322a2bfb55943fb0763ec.html">The user can order successfully with all products in cart</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>9</td>
+                                                    <td>16:23:20</td>
+                                                    <td>00:18</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="cb7fecda69a65d55a60281dda82fafa547c16adda594fd752e53d873beb31a73.html">Remove product from cart</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="e1f5720637cf988ba2661f34f600c855add62f90fd7e53e5fcf41514228191ce.html">The user can clear cart when clicking "Delete all" button</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>5</td>
+                                                    <td>16:23:40</td>
+                                                    <td>00:16</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="cb7fecda69a65d55a60281dda82fafa547c16adda594fd752e53d873beb31a73.html">Remove product from cart</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="3cf4fa30e35bf8d24ba68162984706c607b3638c96fe074dea07188a5e36acc0.html">The user can remove any product by clicking "Delete" button</a>
+                                                    </td>
+                                                    <td>7</td>
+                                                    <td>16:23:57</td>
+                                                    <td>00:22</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="2400f99f0fd32b057423cabb723520b84b9a9ef5008c07c36028807e85c2ec80.html">Search</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="8690f190ab70fd5ab7d16365ac07f97e3cd301144ff2ce6efbdbaadb5513e1fc.html">The related product will appear when the user performs the search function</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>3</td>
+                                                    <td>16:24:20</td>
+                                                    <td>00:06</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="2400f99f0fd32b057423cabb723520b84b9a9ef5008c07c36028807e85c2ec80.html">Search</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="bde6c7f0557578cc85ea3745ddc3309399278d14c8340583dd3a3c662c372c50.html">When the user deletes data in the search button, all products appear</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>4</td>
+                                                    <td>16:24:28</td>
+                                                    <td>00:06</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                <tr class="scenario-result SUCCESS">
+                                                    <td>
+                                                            <a href="2400f99f0fd32b057423cabb723520b84b9a9ef5008c07c36028807e85c2ec80.html">Search</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="07f0404bd85f652af7b1f661cc233f1782478615b6002110844748e88e9cb803.html">The warning appears when the user searches for a product that doesn't exist</a>
+                                                                   (1 example)
+                                                    </td>
+                                                    <td>3</td>
+                                                    <td>16:24:36</td>
+                                                    <td>00:06</td>
+                                                    <td><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i> <span
+                                                            style="display:none">SUCCESS</span></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="fas fa-edit"></i> Manual Tests</h3>
+
+                                                No manual tests were recorded
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                        </td>
+
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="beforefooter"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="version">Serenity BDD version 2.0.12</span>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

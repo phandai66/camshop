@@ -1,0 +1,16 @@
+steps\ChangeTheQuantityOfEachProductInTheCartSteps.class
+steps\AddToCartSteps.class
+steps\FilterProductsSteps.class
+steps\RemoveProductFromCartSteps.class
+pages\CartPage.class
+pages\HomePage.class
+steps\SearchSteps.class
+locators\CartLocators.class
+steps\ContactSteps.class
+locators\HomepageLocators.class
+pages\MyPageObject.class
+pages\OrderPage.class
+locators\OrderLocators.class
+pages\AdminPage.class
+steps\OrderSteps.class
+tests\RunTest.class

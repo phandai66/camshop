@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Contact" skipped="0" tests="3" time="18.9" timestamp="2022-05-21 04:22:18"><testcase name="The phone number in hotline section is correct"/><testcase name="The email in email section is correct"/><testcase name="The address in address section is correct"/></testsuite>
